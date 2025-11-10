@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Lesson Plan Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Lesson Plan Generator</h1>
+        
+        <form id="lessonForm">
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="topic">Topic:</label>
+                <input type="text" id="topic" name="topic" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="classLevel">Class Level:</label>
+                <select id="classLevel" name="classLevel" required>
+                    <option value="">Select Class Level</option>
+                    <option value="Grade 1">Grade 1</option>
+                    <option value="Grade 2">Grade 2</option>
+                    <option value="Grade 3">Grade 3</option>
+                    <option value="Grade 4">Grade 4</option>
+                    <option value="Grade 5">Grade 5</option>
+                    <option value="Grade 6">Grade 6</option>
+                    <option value="Grade 7">Grade 7</option>
+                    <option value="Grade 8">Grade 8</option>
+                    <option value="Grade 9">Grade 9</option>
+                    <option value="Grade 10">Grade 10</option>
+                    <option value="Grade 11">Grade 11</option>
+                    <option value="Grade 12">Grade 12</option>
+                </select>
+            </div>
+            
+            <button type="button" id="generateBtn" class="generate-btn">
+                <span class="btn-text">Generate Lesson Plan</span>
+                <span class="loading-spinner" style="display: none;">Generating...</span>
+            </button>
+            
+            <div class="generated-content" id="generatedContent" style="display: none;">
+                <h3>Generated Lesson Plan</h3>
+                
+                <div class="form-group">
+                    <label for="behavioralObjectives">Behavioral Objectives:</label>
+                    <textarea id="behavioralObjectives" rows="4" readonly></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="summary">Lesson Summary:</label>
+                    <textarea id="summary" rows="6" readonly></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="editBtn">Edit Content</button>
+                    <button type="button" id="regenerateBtn">Regenerate</button>
+                    <button type="submit">Save Lesson Plan</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

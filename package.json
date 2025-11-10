@@ -1,0 +1,23 @@
+{
+  "name": "ai-lesson-plan-generator",
+  "version": "1.0.0",
+  "description": "AI-powered lesson plan generator using Netlify Functions",
+  "main": "index.html",
+  "scripts": {
+    "dev": "echo 'Run: npx netlify dev' && echo 'Make sure to set GEMINI_API_KEY environment variable'",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "echo 'Run: npx netlify deploy --prod'"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.1.3"
+  },
+  "keywords": [
+    "ai",
+    "lesson-plan",
+    "education",
+    "netlify-functions",
+    "gemini"
+  ],
+  "author": "",
+  "license": "MIT"
+}
