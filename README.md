@@ -123,13 +123,20 @@ A web application that generates comprehensive lesson plans using Google's Gemin
    - For production, ensure the environment variable is set in Netlify dashboard
 
 2. **"Failed to generate lesson plan"**
-   - Check your internet connection
-   - Verify your Gemini API key is valid
-   - Check Netlify function logs for detailed error messages
+    - Check your internet connection
+    - Verify your Gemini API key is valid
+    - Check Netlify function logs for detailed error messages
+    - If you see model not found errors, the API may be updating - try again later
 
-3. **CORS errors**
-   - Ensure your function includes proper CORS headers
-   - Check that your frontend is making requests to the correct URL
+3. **"Model not found" or 404 errors**
+    - The Gemini API model names may have changed
+    - The application automatically tries multiple model names
+    - Check if your API key has the proper permissions
+    - Ensure you're using a valid Gemini API key from Google AI Studio
+
+4. **CORS errors**
+    - Ensure your function includes proper CORS headers
+    - Check that your frontend is making requests to the correct URL
 
 ## Contributing
 

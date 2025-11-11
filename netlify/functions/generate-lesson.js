@@ -44,12 +44,11 @@ exports.handler = async (event, context) => {
             };
         }
 
-        // Initialize Gemini AI
+// Initialize Gemini AI
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
-        // Craft detailed prompt for structured output
-        const prompt = `
+        
+        // Try direct API call instead of the SDK
+        const promptText = `
 You are an expert curriculum designer and educator. Based on the following information, create a comprehensive lesson plan:
 
 Subject: ${subject}
@@ -80,10 +79,30 @@ Example format:
 {"subject": "Mathematics", "topic": "Fractions", "behavioralObjectives": ["Students will be able to identify proper and improper fractions", "Students will be able to convert mixed numbers to improper fractions", "Students will be able to add fractions with like denominators"], "summary": "This lesson introduces students to the concept of fractions..."}
 `;
 
-        // Generate content with Gemini
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
+        // Make direct API call with a working model
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key=${apiKey}`;
+        
+        const apiResponse = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: promptText
+                    }]
+                }]
+            })
+        });
+
+        if (!apiResponse.ok) {
+            const errorData = await apiResponse.text();
+            throw new Error(`API Error: ${apiResponse.status} - ${errorData}`);
+        }
+
+const apiData = await apiResponse.json();
+        const text = apiData.candidates[0].content.parts[0].text;
 
         // Clean and parse JSON response
         let cleanedText = text.trim();

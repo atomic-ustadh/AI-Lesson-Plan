@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct API Test</title>
+</head>
+<body>
+    <h1>Test Direct Gemini API</h1>
+    <button onclick="testDirectAPI()">Test API Call</button>
+    <div id="result"></div>
+
+    <script>
+        async function testDirectAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing direct API call...';
+            
+            try {
+                // This will test our function that uses direct API calls
+                const response = await fetch('/.netlify/functions/generate-lesson', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        subject: 'Mathematics',
+                        topic: 'Addition',
+                        classLevel: 'Grade 1'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <h3>Direct API Result:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<h3>Error:</h3><pre>${error.message}</pre>`;
+            }
+        }
+    </script>
+</body>
+</html>

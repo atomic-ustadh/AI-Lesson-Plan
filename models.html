@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Available Models</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { padding: 10px 20px; margin: 10px; }
+        pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Available Gemini Models</h1>
+    <button onclick="listModels()">List Available Models</button>
+    <div id="result"></div>
+
+    <script>
+        async function listModels() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Fetching available models...';
+            
+            try {
+                const response = await fetch('/.netlify/functions/list-models');
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <h3>Available Models:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<h3>Error:</h3><pre>${error.message}</pre>`;
+            }
+        }
+    </script>
+</body>
+</html>

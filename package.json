@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "AI-powered lesson plan generator using Netlify Functions",
   "main": "index.html",
-  "scripts": {
-    "dev": "echo 'Run: npx netlify dev' && echo 'Make sure to set GEMINI_API_KEY environment variable'",
+"scripts": {
+    "dev": "npx netlify dev",
     "build": "echo 'No build step required for static site'",
-    "deploy": "echo 'Run: npx netlify deploy --prod'"
+    "deploy": "npx netlify deploy --prod",
+    "test": "echo 'No tests specified yet'"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0"
